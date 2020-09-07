@@ -1,10 +1,13 @@
+package driver;
+
 import java.sql.*;
 
 // Notice, do not import com.mysql.cj.jdbc.*
 // or you will have problems!
 
 public class LoadDriver {
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
+    public LoadDriver(){
         try {
             // The newInstance() call is a work around for some
             // broken Java implementations
@@ -18,16 +21,14 @@ public class LoadDriver {
 
         Connection conn = null;
         Statement stmt = null;
-        ResultSet rs = null;
+//        ResultSet rs;
         try {
             conn =
                     DriverManager.getConnection("jdbc:mysql://localhost:3306/mydbtest?autoReconnect=true&useSSL=false&" + "user=root1&password=root");
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM users");
+//            stmt = conn.createStatement();
 
-            if (stmt.execute("SELECT * FROM users")){
-            rs = stmt.getResultSet();
-            }
+//            rs = stmt.executeUpdate("INSERT INTO users (name, password) values('Denis34', '123')");
+//            rs = stmt.executeQuery("select * from users");
 
         } catch (SQLException ex) {
             // handle any errors
