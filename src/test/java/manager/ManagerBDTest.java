@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ManagerBDTest {
 
-        ManagerBD managerBD = new ManagerBD();
+    ManagerBD managerBD = new ManagerBD();
 
     @BeforeEach
-            public void setup() {
+    public void setup() {
         managerBD.clean();
 
         managerBD.addUser("test", "test");
@@ -21,19 +21,23 @@ class ManagerBDTest {
     }
 
     @Test
-    public void shouldNotAdd(){
+    public void shouldNotAdd() {
 
-        assertThrows(SQLException.class, () -> managerBD.addUser("test","test"));
+        assertThrows(SQLException.class, () -> managerBD.addUser("test", "test"));
     }
 
     @Test
-    public void shouldClean(){
+    public void shouldClean() {
         managerBD.clean();
     }
 
     @Test
-    public void shouldGetUsers(){
+    public void shouldGetUsers() {
+
+
         System.out.println(managerBD.getUsers());
+
+
     }
 
 }

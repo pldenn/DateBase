@@ -6,6 +6,7 @@ import driver.LoadDriver;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ManagerBD {
 
@@ -13,8 +14,6 @@ public class ManagerBD {
     private Statement stmt = null;
 
     public void addUser(String username, String password){
-
-
 
         String sqlStatement = "INSERT INTO users (name, password) values('" + username + "', '" + password + "')";
 
@@ -30,10 +29,11 @@ public class ManagerBD {
         }
     }
 
-    public ResultSet getUsers() {
+    public ArrayList getUsers() {
 
         String sqlStatement = "SELECT * FROM users";
         ResultSet rs = null;
+                 ArrayList <User> users = new ArrayList<>();
 
         try {
             stmt = driver.getConn().createStatement();
@@ -43,9 +43,10 @@ public class ManagerBD {
                  User user = new User();
                  user.setId(rs.getInt("id"));
                  user.setUsername(rs.getString("name"));
-                 user.setPasssword(rs.getString("password"));
-                 System.out.println(user);
+                 user.setPassword(rs.getString("password"));
+                 users.add(user);
              }
+
 
         } catch (SQLException ex) {
             // handle any errors
@@ -53,7 +54,7 @@ public class ManagerBD {
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         }
-        return rs;
+        return users;
     }
 
     public void clean() {

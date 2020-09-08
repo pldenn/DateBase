@@ -1,6 +1,8 @@
 package driver;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 // Notice, do not import com.mysql.cj.jdbc.*
 // or you will have problems!
@@ -13,7 +15,7 @@ public class LoadDriver {
         return conn;
     }
 
-    public LoadDriver(){
+    public LoadDriver() {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
