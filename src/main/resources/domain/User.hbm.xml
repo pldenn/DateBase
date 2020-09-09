@@ -6,23 +6,22 @@
 <hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
 
 
-<!--    путь к классу с которым будем работать & дальше говорим что будем мапить-->
-    <class name="domain.User" table="mybdtest">
-<!--        первичный ключ id из класса , тип ключа, название колонки в таблице-->
-        <id name="id" type="int" column="id" >
-<!--            <generator class="assigned" />-->
+    <!--    путь к Классу с которым будем работать & дальше путь в какое название таблицы будем мапить-->
+    <class name="domain.User" table="users">
+        <!--        первичный ключ id из класса , тип ключа, название колонки в таблице-->
+        <id name="id" type="int" column="id">
+            <!--            <generator class="assigned" />-->
         </id>
-<!--        остальные переменные объекта указываются в проперти-->
-        <property name="username" >
-            <column name="name" />
+        <!--        остальные переменные объекта указываются в проперти-->
+        <property name="username">
+            <column name="name"/>
         </property>
 
-        <property name="password" >
-            <column name="password" />
+        <property name="password">
+            <column name="password"/>
         </property>
-
 
     </class>
-
 </hibernate-mapping>
-<!--        Конфигурационный файл hibernate.cf-->
+        <!--        Конфигурационный файл hibernate.cf
+        тут создаем карту объекта - сущности @Entity-->

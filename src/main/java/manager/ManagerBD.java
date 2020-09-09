@@ -13,13 +13,13 @@ public class ManagerBD {
     private LoadDriver driver = new LoadDriver();
     private Statement stmt = null;
 
-    public void addUser(String username, String password){
+    public void addUser(String username, String password) {
 
         String sqlStatement = "INSERT INTO users (name, password) values('" + username + "', '" + password + "')";
 
         try {
             stmt = driver.getConn().createStatement();
-           int rs = stmt.executeUpdate(sqlStatement);
+            int rs = stmt.executeUpdate(sqlStatement);
 
         } catch (SQLException ex) {
             // handle any errors
@@ -33,19 +33,19 @@ public class ManagerBD {
 
         String sqlStatement = "SELECT * FROM users";
         ResultSet rs = null;
-                 ArrayList <User> users = new ArrayList<>();
+        ArrayList<User> users = new ArrayList<>();
 
         try {
             stmt = driver.getConn().createStatement();
-             rs = stmt.executeQuery(sqlStatement);
+            rs = stmt.executeQuery(sqlStatement);
 
-             while (rs.next()){
-                 User user = new User();
-                 user.setId(rs.getInt("id"));
-                 user.setUsername(rs.getString("name"));
-                 user.setPassword(rs.getString("password"));
-                 users.add(user);
-             }
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setUsername(rs.getString("name"));
+                user.setPassword(rs.getString("password"));
+                users.add(user);
+            }
 
 
         } catch (SQLException ex) {

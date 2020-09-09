@@ -10,10 +10,13 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mydbtest</property>
         <property name="hibernate.connection.username">root1</property>
         <property name="hibernate.connection.password">root</property>
+
         <!-- JDBC connection pool (use the built-in) -->
         <property name="hibernate.connection.pool_size">1</property>
+
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
+
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.current_session_context_class">thread</property>
@@ -22,7 +25,7 @@
         <property name="hibernate.connection.useUnicode">true</property>
 
         <mapping resource="domain/User.hbm.xml"/>
-<!--        <mapping class="domain.User" />-->
+        <!--        <mapping class="domain.User" />-->
 
     </session-factory>
 </hibernate-configuration>
