@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ManagerBDTest {
 
-    ManagerBD managerBD = new ManagerBD();
+    ManagerBdSQL managerBD = new ManagerBdSQL();
 
     @BeforeEach
     public void setup() {

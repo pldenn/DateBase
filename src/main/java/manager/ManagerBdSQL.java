@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ManagerBD {
+public class ManagerBdSQL {
 
     private LoadDriver driver = new LoadDriver();
     private Statement stmt = null;

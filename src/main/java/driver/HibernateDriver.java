@@ -1,21 +1,25 @@
-import domain.User;
+package driver;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class Main {
-    public static void main(String[] args) {
+public class HibernateDriver {
 
-//    }
-//        public void shouldTestSession() {
-        User user = new User(1, "try", "try");
-        SessionFactory sessionFactory = null;
+    private SessionFactory sessionFactory = null;
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+   public  HibernateDriver(){
+
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
+
         try {
             sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         } catch (Exception e) {
@@ -23,12 +27,9 @@ public class Main {
             // so destroy it manually.
             StandardServiceRegistryBuilder.destroy(registry);
         }
+
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
-
-        session.save(user);
-
-        session.getTransaction().commit();
-        session.close();
+        System.out.println("Создание сессии");
     }
+
 }
