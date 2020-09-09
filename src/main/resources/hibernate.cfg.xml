@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection settings -->
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mydbtest</property>
         <property name="hibernate.connection.username">root1</property>
         <property name="hibernate.connection.password">root</property>
@@ -21,7 +21,8 @@
         <property name="hibernate.connection.characterEncoding">utf8</property>
         <property name="hibernate.connection.useUnicode">true</property>
 
-        <mapping class="net.common.model.Person" />
+        <mapping resource="domain/User.hbm.xml"/>
+<!--        <mapping class="domain.User" />-->
 
     </session-factory>
 </hibernate-configuration>

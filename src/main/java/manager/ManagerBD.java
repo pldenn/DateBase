@@ -1,6 +1,6 @@
 package manager;
 
-import data.User;
+import domain.User;
 import driver.LoadDriver;
 
 import java.sql.ResultSet;

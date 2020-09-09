@@ -1,0 +1,28 @@
+<?xml version='1.0'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+
+
+<!--    путь к классу с которым будем работать & дальше говорим что будем мапить-->
+    <class name="domain.User" table="mybdtest">
+<!--        первичный ключ id из класса , тип ключа, название колонки в таблице-->
+        <id name="id" type="int" column="id" >
+<!--            <generator class="assigned" />-->
+        </id>
+<!--        остальные переменные объекта указываются в проперти-->
+        <property name="username" >
+            <column name="name" />
+        </property>
+
+        <property name="password" >
+            <column name="password" />
+        </property>
+
+
+    </class>
+
+</hibernate-mapping>
+<!--        Конфигурационный файл hibernate.cf-->

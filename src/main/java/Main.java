@@ -1,32 +1,42 @@
+import domain.User;
 import driver.LoadDriver;
+import jdk.jfr.Event;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Main {
     public static void main(String[] args) {
-        LoadDriver driver = new LoadDriver();
-        Statement stmt = null;
-        int rs;
 
-        try {
-            stmt = driver.getConn().createStatement();
-            rs = stmt.executeUpdate("INSERT INTO users (name, password) values('Den1', '123')");
+//    }
+//        public void shouldTestSession() {
+            User user = new User(1,"try","try");
+            SessionFactory sessionFactory = null;
+            final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
 
+                    .configure() // configures settings from hibernate.cfg.xml
+                    .build();
+            try {
+               sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+            }
+            catch (Exception e) {
+                // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
+                // so destroy it manually.
+                StandardServiceRegistryBuilder.destroy( registry );
+            }
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
 
-            // or alternatively, if you don't know ahead of time that
-            // the query will be a SELECT...
+            session.save(user);
 
-//            if (stmt.execute("SELECT foo FROM bar")) {
-//                rs = stmt.getResultSet();
-//            }
-
-            // Now do something with the ResultSet ....
-        } catch (SQLException ex) {
-            // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            session.getTransaction().commit();
+            session.close();
         }
-    }
 }
